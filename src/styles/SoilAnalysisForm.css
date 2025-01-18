@@ -64,35 +64,7 @@
       margin: 20px;
     }
   }
-/* Styles for the auto coordinates button */
-.auto-coordinates-btn {
-    background-color: #4CAF50;  /* Green background color */
-    color: white;  /* White text color */
-    padding: 12px 20px;  /* Padding around the text */
-    font-size: 16px;  /* Font size */
-    font-weight: bold;  /* Bold text */
-    border: none;  /* Remove default border */
-    border-radius: 8px;  /* Rounded corners */
-    cursor: pointer;  /* Cursor pointer on hover */
-    transition: all 0.3s ease;  /* Smooth transition for hover effects */
-    margin-top: 15px;  /* Top margin for spacing */
-    width: 100%;  /* Full width for responsive design */
-    max-width: 300px;  /* Limit maximum width */
-    display: inline-block;  /* Make it an inline block */
-    text-align: center;  /* Center-align the text */
-    box-sizing: border-box;  /* Include padding in width calculation */
-  }
-  
-  .auto-coordinates-btn:hover {
-    background-color: #45a049;  /* Darker green on hover */
-    transform: translateY(-2px);  /* Lift the button slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow effect */
-  }
-  
-  .auto-coordinates-btn:active {
-    background-color: #3e8e41;  /* Darker green when clicked */
-    transform: translateY(1px);  /* Slightly push the button down */
-  }
+
   .form-container {
     background: rgba(255, 255, 255, 0.8);  /* Transparent white background */
     padding: 20px;
@@ -128,36 +100,8 @@
     border-radius: 5px;
   }
   
-  .submit-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;  /* Green background for submit */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
   
-  .submit-btn:hover {
-    background-color: #45a049;  /* Slightly darker green on hover */
-  }
   
-  .auto-coordinates-btn {
-    width: 39%;
-    padding: 12px;
-    background-color: #2196F3;  /* Blue background for auto coordinates */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .auto-coordinates-btn:hover {
-    background-color: #0b7dda;  /* Darker blue on hover */
-  }
   
   .error-message {
     color: red;

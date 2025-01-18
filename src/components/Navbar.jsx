@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
     setShowSidebar(prevState => !prevState);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if the click is outside the sidebar
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setShowSidebar(false); // Close the sidebar
+      }
+    };
+
+    // Add event listener for detecting clicks outside
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup event listener on unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []); // Only run this effect once, when the component mounts
 
   return (
     <>
@@ -14,7 +32,7 @@ export const Navbar = () => {
         <nav>
           <div className="logo-container">
             <NavLink to="/">
-              <img src="./assets/Logo.png" alt="Logo" className="navbar-logo" />
+              <img src="../public/assets/Logo.png" alt="Logo" className="navbar-logo" />
             </NavLink>
           </div>
           <ul className="nav-menu">
@@ -24,8 +42,8 @@ export const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/soil-analysis" className={({ isActive }) => (isActive ? 'active' : '')}>
-                Soil Analysis
+              <NavLink to="/dashbord" className={({ isActive }) => (isActive ? 'active' : '')}>
+                Crop Management
               </NavLink>
             </li>
             <li>
@@ -52,7 +70,7 @@ export const Navbar = () => {
 
       {/* Sidebar */}
       {showSidebar && (
-        <div className="sidebar">
+        <div className="sidebar" ref={sidebarRef}>
           <div className="sidebar-content">
             <ul>
               <li>

@@ -1,0 +1,208 @@
+/* Card Dashboard Container */
+.dashboard-container {
+    position: relative;
+  }
+  
+  /* Backdrop Effect (Blur the background when the form is open) */
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    z-index: 10;
+    backdrop-filter: blur(5px); /* Apply background blur */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Form Modal Styling */
+  .form-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 20; /* Ensure the form is above the backdrop */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Show Form Modal (Smooth Transition) */
+  .form-modal.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  /* Form Container for Inputs */
+  .form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Form Title Styling */
+  .form-title {
+    text-align: center;
+    color: #22b13a;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Input Group Styling */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Input Focus Styling */
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus {
+    outline: none;
+    border-color: #22b13a;
+    box-shadow: 0 0 5px rgba(34, 177, 58, 0.5);
+  }
+  
+  /* Submit Button Styling */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #22b13a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #1a8f2e;
+  }
+  
+  /* Card Container Styling */
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  /* Individual Card Styling */
+  .card {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add New Card Styling with "+" Symbol */
+  .add-card {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 200px;
+    height: 242px;
+   
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-card:hover {
+    background-color: #d9d9d9;
+  }
+  
+  .add-symbol {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Layout for Smaller Screens */
+  @media (max-width: 768px) {
+    .form-container {
+      margin: 20px;
+    }
+    
+    .card-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  /* Styles for the auto coordinates button */
+.auto-coordinates-btn {
+    background-color: #4CAF50;  /* Green background color */
+    color: white;  /* White text color */
+    padding: 12px 20px;  /* Padding around the text */
+    font-size: 16px;  /* Font size */
+    font-weight: bold;  /* Bold text */
+    border: none;  /* Remove default border */
+    border-radius: 8px;  /* Rounded corners */
+    cursor: pointer;  /* Cursor pointer on hover */
+    transition: all 0.3s ease;  /* Smooth transition for hover effects */
+    margin-top: 15px;  /* Top margin for spacing */
+    width: 100%;  /* Full width for responsive design */
+    max-width: 300px;  /* Limit maximum width */
+    display: inline-block;  /* Make it an inline block */
+    text-align: center;  /* Center-align the text */
+    box-sizing: border-box;  /* Include padding in width calculation */
+  }
+  
+  .auto-coordinates-btn:hover {
+    background-color: #45a049;  /* Darker green on hover */
+    transform: translateY(-2px);  /* Lift the button slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Shadow effect */
+  }
+  
+  .auto-coordinates-btn:active {
+    background-color: #3e8e41;  /* Darker green when clicked */
+    transform: translateY(1px);  /* Slightly push the button down */
+  }
+  .auto-coordinates-btn {
+    width: 39%;
+    padding: 12px;
+    background-color: #2196F3;  /* Blue background for auto coordinates */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .auto-coordinates-btn:hover {
+    background-color: #0b7dda;  /* Darker blue on hover */
+  }
+  

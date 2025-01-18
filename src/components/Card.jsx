@@ -1,34 +1,16 @@
-import React from "react";
-import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
-import { useNavigate } from "react-router-dom";  // For navigation
+// Card.jsx
+import React from 'react';
 
-function CustomCard({ formData }) {
-  const navigate = useNavigate();
-
-  const handleBackToDashboard = () => {
-    navigate("/dashboard"); // Navigate back to the dashboard
-  };
-
-  // Add conditional rendering to prevent errors if formData is undefined
-  if (!formData) {
-    return <p>Loading...</p>; // Show a loading message if formData is not yet available
-  }
-
+const Card = ({ formData,onClick }) => {
   return (
-    <Card className="mt-4">
-      <CardBody>
-        <CardTitle tag="h5">Soil Analysis Results</CardTitle>
-        <CardText><strong>Crop Name:</strong> {formData.cropName}</CardText>
-        <CardText><strong>Soil Type:</strong> {formData.soilType}</CardText>
-        <CardText><strong>Latitude:</strong> {formData.latitude}</CardText>
-        <CardText><strong>Longitude:</strong> {formData.longitude}</CardText>
-        <CardText><strong>Crop Age:</strong> {formData.cropAge} days</CardText>
-        <Button color="primary" onClick={handleBackToDashboard}>
-          Back to Dashboard
-        </Button>
-      </CardBody>
-    </Card>
+    <div className="card" onClick={onClick}>
+      <h3>{formData.cropName}</h3>
+      <p><strong>Soil Type:</strong> {formData.soilType}</p>
+      <p><strong>Latitude:</strong> {formData.latitude}</p>
+      <p><strong>Longitude:</strong> {formData.longitude}</p>
+      <p><strong>Crop Age:</strong> {formData.cropAge}</p>
+    </div>
   );
-}
+};
 
-export default CustomCard;
+export default Card;

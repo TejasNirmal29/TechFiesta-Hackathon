@@ -7,10 +7,12 @@ import './styles/Navbar.css'
 import './styles/Introduction.css'
 import Introduction from './pages/Introduction.jsx'
 import Footer from './components/Footer.jsx'
-import SoilAnalysisForm from './pages/SoilAnalysisForm.jsx';
+import SoilAnalysisForm from './components/SoilAnalysisForm.jsx';
 import './styles/SoilAnalysisForm.css';
-import  CustomCard from './components/Card.jsx';
+import './styles/Card.css'
 import CardDashboard from './pages/CardDashboard.jsx'
+import AnalysisResults from './pages/AnalysisResults.jsx';
+
 
 
 
@@ -24,8 +26,8 @@ function App() {
         
         <Routes> 
           <Route path="/" element={<Introduction />} />  {/* Home route */}
-          <Route path="/soil-analysis" element={<SoilAnalysisForm />} /> 
-          <Route path="/information" element={<CardDashboard/>} />  {/* Soil Analysis page */}
+          <Route path="/dashbord" element={<CardDashboard/>} /> 
+          <Route path="/analysis/:index" element={<AnalysisResults />} />
 
         </Routes>
         

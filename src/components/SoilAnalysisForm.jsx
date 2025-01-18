@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-function SoilAnalysisForm() {
-  // State to store form data and location error
+function SoilAnalysisForm({ onSubmit }) {
   const [formData, setFormData] = useState({
     latitude: "",
     longitude: "",
@@ -12,68 +11,19 @@ function SoilAnalysisForm() {
     cropAge: "",
   });
   const [locationError, setLocationError] = useState("");
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [loadingLocation, setLoadingLocation] = useState(false);
 
-  // State to store the current position (for the map center)
-  const [position, setPosition] = useState([51.505, -0.09]); // Default location (London)
+  const [position, setPosition] = useState([51.505, -0.09]);
 
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  // Function to handle geolocation and update the map with the current position
-  const handleAutoCoordinates = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          // Update position state with the new coordinates
-          setPosition([latitude, longitude]);
-
-          // Update the form fields with the current latitude and longitude
-          setFormData((prevData) => ({
-            ...prevData,
-            latitude,
-            longitude,
-          }));
-
-          setLocationError(""); // Reset any previous error messages
-        },
-        (error) => {
-          // Handle geolocation errors
-          if (error.code === error.PERMISSION_DENIED) {
-            setLocationError(
-              "Location access was denied. Please enable location access to use this feature."
-            );
-          } else {
-            setLocationError("Error getting location. Please try again.");
-          }
-          console.error("Error getting location:", error);
-        }
-      );
-    } else {
-      setLocationError("Geolocation is not supported by this browser.");
-    }
-  };
-
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form submitted with values:", formData);
-  };
-
-  // Custom hook to reset map center when position changes
+  // ResetCenter: Custom hook to reset map center when position changes
   function ResetCenter() {
     const map = useMap();
     map.setView(position, map.getZoom()); // Re-center map
     return null;
   }
 
-  // Handle map click event to update the marker and coordinates
+  // MapClickHandler: Handles map click event to update marker position
   function MapClickHandler() {
     const map = useMapEvents({
       click(event) {
@@ -88,6 +38,80 @@ function SoilAnalysisForm() {
     });
     return null;
   }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const validateCoordinates = (lat, lng) => {
+    const latNum = parseFloat(lat);
+    const lngNum = parseFloat(lng);
+
+    if (isNaN(latNum) || isNaN(lngNum)) {
+      return "Invalid coordinates. Please provide valid latitude and longitude.";
+    }
+
+    if (latNum < -90 || latNum > 90) {
+      return "Latitude must be between -90 and 90.";
+    }
+
+    if (lngNum < -180 || lngNum > 180) {
+      return "Longitude must be between -180 and 180.";
+    }
+
+    return null;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const validationError = validateCoordinates(formData.latitude, formData.longitude);
+    console.log(formData)
+    if (validationError) {
+      setLocationError(validationError);
+      return;
+    }
+
+    if (onSubmit) {
+      onSubmit(formData);
+    }
+    setFormData({
+      cropName: '',
+      soilType: '',
+      latitude: '',
+      longitude: '',
+      cropAge: '',
+    });
+    setIsFormSubmitted(true);
+  };
+
+  const handleAutoCoordinates = () => {
+    if (navigator.geolocation) {
+      setLoadingLocation(true);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setPosition([latitude, longitude]);
+          setFormData({
+            ...formData,
+            latitude,
+            longitude,
+          });
+          setLocationError("");
+          setLoadingLocation(false);
+        },
+        (error) => {
+          setLocationError("Error getting location. Please try again.");
+          setLoadingLocation(false);
+        }
+      );
+    } else {
+      setLocationError("Geolocation is not supported by this browser.");
+    }
+  };
 
   return (
     <div className="form-container">
@@ -157,7 +181,6 @@ function SoilAnalysisForm() {
           />
         </div>
 
-        {/* Button to get current location */}
         <button type="button" onClick={handleAutoCoordinates} className="auto-coordinates-btn">
           Get Current Coordinates
         </button>
@@ -176,24 +199,18 @@ function SoilAnalysisForm() {
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          Analyze
-        </button>
+        <button type="submit" className="submit-btn">Analyze</button>
       </form>
 
-      {/* Display error message if location permissions are denied */}
       {locationError && <p className="error-message">{locationError}</p>}
+      {isFormSubmitted && <p className="success-message">Form submitted successfully!</p>}
 
-      {/* Display the map with current location */}
       <MapContainer center={position} zoom={13} style={{ height: "400px", width: "100%" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Marker position={position}>
           <Popup>Your current location</Popup>
         </Marker>
-
-        {/* Custom component to re-center the map */}
         <ResetCenter />
-        {/* Custom component to handle map click event */}
         <MapClickHandler />
       </MapContainer>
     </div>

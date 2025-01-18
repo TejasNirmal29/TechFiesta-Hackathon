@@ -1,52 +1,53 @@
-// CardDashboard.jsx
-import React, { useState } from "react";
-import CustomCard from "../components/Card"; // Assuming you have the CustomCard component
-import SoilAnalysisForm from "./SoilAnalysisForm"; // Import the form component
-import { Container, Row, Col, Button } from "reactstrap";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SoilAnalysisForm from '../components/SoilAnalysisForm';
+import Card from '../components/Card';
 
-function CardDashboard() {
-  const [submittedDataList, setSubmittedDataList] = useState([]);
-  const [isFormVisible, setFormVisible] = useState(false); // Track form visibility
+const CardDashboard = () => {
+  const [history, setHistory] = useState([]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const navigate = useNavigate();  // Hook for navigation
 
-  const handleAddCard = (formData) => {
-    setSubmittedDataList((prevData) => [...prevData, formData]);
+  // Handle the form submission
+  const handleFormSubmit = (formData) => {
+    setHistory((prevHistory) => [...prevHistory, formData]);
+    setIsFormVisible(false); // Close the form after submission
   };
 
-  const handleOpenForm = () => {
-    setFormVisible(true); // Show the form when the button is clicked
+  // Toggle the visibility of the form
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
   };
 
-  const handleCloseForm = () => {
-    setFormVisible(false); // Close the form when canceled or submitted
+  const handleCardClick = (index) => {
+    console.log("Navigating with data:", history[index]); // Log the data being passed
+    navigate(`/analysis/${index}`, { state: { formData: history[index] } });
   };
-
   return (
-    <Container className="mt-5">
-      <h2>Soil Analysis Dashboard</h2>
+    <div>
+      <h1>Soil Analysis Dashboard</h1>
 
-      {/* Button to open the form */}
-      <Button color="success" onClick={handleOpenForm}>
-        Add New Card
-      </Button>
+      {/* Render submitted cards first */}
+      <div className="card-container">
+        {history.map((data, index) => (
+          <div key={index} onClick={() => handleCardClick(index)}>
+            <Card formData={data} />
+          </div>
+        ))}
 
-      {/* Display form when isFormVisible is true */}
+        {/* Default Add Card should be at the last */}
+        <div className="card add-card card-container" onClick={toggleFormVisibility}>
+          <div className="add-symbol">+</div>
+          <p>Add New Entry</p>
+        </div>
+      </div>
+
+      {/* Show Soil Analysis Form when isFormVisible is true */}
       {isFormVisible && (
-        <SoilAnalysisForm onSubmit={handleAddCard} onClose={handleCloseForm} />
+        <SoilAnalysisForm onSubmit={handleFormSubmit} closeForm={toggleFormVisibility} />
       )}
-
-      <Row className="mt-4">
-        {submittedDataList.length === 0 ? (
-          <Col>No data submitted yet!</Col>
-        ) : (
-          submittedDataList.map((data, index) => (
-            <Col sm="4" key={index}>
-              <CustomCard data={data} />
-            </Col>
-          ))
-        )}
-      </Row>
-    </Container>
+    </div>
   );
-}
+};
 
 export default CardDashboard;
