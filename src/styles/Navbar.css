@@ -1,0 +1,198 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+  
+    background: url('./detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed_181624-25838\ \(1\).avif') no-repeat center center/cover; /* Replace with your image path */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+   justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    background: #22b13a;
+    color: #ffffff;
+    padding: 0;
+  }
+  
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 ;
+    padding: 0 20px;
+}
+
+.logo-container {
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.navbar-logo {
+    max-height: 80px;
+    width: auto;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-right: 50px;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-menu li a {
+    color: #ffffff;
+    font-size: 19px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: color 0.3s, box-shadow 0.3s;
+}
+.active{
+    color: #66ff66;
+}
+
+.nav-menu li a::before,
+.nav-menu li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Positioned slightly below the text */
+    height: 2px;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a::before {
+    background: #00ff00; /* Neon green line */
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; /* Neon glow effect */
+}
+
+.nav-menu li a::after {
+    background: #ffffff; /* Whitish line */
+    opacity: 0.5;
+}
+
+.nav-menu li a:hover::before,
+.nav-menu li a:hover::after {
+    width: 100%; /* Expand the line on hover */
+}
+.more-options {
+    position: relative;
+  }
+  
+  .more-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .more-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .more-menu li {
+    list-style: none;
+  }
+  
+  .more-menu li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .more-menu li a:hover {
+    background-color: #f0f0f0;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #2c3e50; /* Dark background color */
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin: 10px 0;
+  }
+  
+  .sidebar li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar li a:hover {
+    background-color: #34495e; /* Darker shade on hover */
+  }
+  
+  /* Sidebar animation */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Button for toggling sidebar (three dots) */
+  .sidebar-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    background: none;
+    border: none;
+  }  

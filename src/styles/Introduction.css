@@ -1,0 +1,168 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.homepage {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex-grow: 0;
+}
+
+.see-more-container {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.see-more-btn {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.see-more-btn:hover {
+  background-color: #45a049;
+}
+
+.content-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+  color: #333;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.content-section h3,
+.content-section h4 {
+  color: #4caf50;
+  margin-top: 20px;
+}
+
+.content-section p {
+  line-height: 1.6;
+  color: #666;
+}
+
+.content-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+  transition: transform 0.3s ease;
+}
+
+.content-section img:hover {
+  transform: scale(1.05);
+}
+
+.highlight {
+  background-color: #e6f7ff;
+  border-left: 4px solid #4caf50;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.highlight ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.highlight li {
+  margin-bottom: 10px;
+}
+
+.story-image {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.imgpad {
+  padding: 30px 50px;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.article {
+  padding: 50px;
+}
+
+.steps ul,
+.technologies ul,
+.how-it-was-built ul,
+.advantages ul,
+.use-cases ul,
+.future-aspects ul {
+  padding-left: 20px;
+}
+
+.steps li,
+.technologies li,
+.how-it-was-built li,
+.advantages li,
+.use-cases li,
+.future-aspects li {
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+
+.steps li:hover,
+.technologies li:hover,
+.how-it-was-built li:hover,
+.advantages li:hover,
+.use-cases li:hover,
+.future-aspects li:hover {
+  transform: translateX(5px);
+}
+
+.formula {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  margin: 10px 0;
+}
+
+.advantages li,
+.use-cases li,
+.future-aspects li {
+  list-style-type: none;
+  padding-left: 25px;
+  position: relative;
+}
+
+.advantages li:before,
+.use-cases li:before,
+.future-aspects li:before {
+  content: '✓';
+  color: #4caf50;
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 600px) {
+  .content-section {
+    padding: 10px;
+  }
+}
