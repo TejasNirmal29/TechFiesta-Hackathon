@@ -1,19 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 export const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const sidebarRef = useRef(null);
-
+  const navigate = useNavigate();  // Hook for navigation
+  
+  // Check if the user is logged in (authentication state stored in localStorage)
+  const isLoggedIn = localStorage.getItem('authToken');  // Use your auth logic here
+  
   const toggleSidebar = () => {
-    setShowSidebar(prevState => !prevState);
+    if (isLoggedIn) {
+      // If logged in, show sidebar
+      setShowSidebar(prevState => !prevState);
+    } else {
+      // If not logged in, redirect to the login page
+      navigate('/login');
+    }
+  };
+
+  const closeSidebar = () => {
+    setShowSidebar(false);
+  };
+
+  const handleLogout = () => {
+    // Clear the authentication token from localStorage
+    localStorage.removeItem('authToken');
+    
+    // Optionally, you can also clear any other authentication-related data
+    
+    // Redirect the user to the login page
+    navigate('/login');
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click is outside the sidebar
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-        setShowSidebar(false); // Close the sidebar
+        setShowSidebar(false); // Close the sidebar if clicked outside
       }
     };
 
@@ -24,7 +48,7 @@ export const Navbar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []); // Only run this effect once, when the component mounts
+  }, []);
 
   return (
     <>
@@ -32,7 +56,7 @@ export const Navbar = () => {
         <nav>
           <div className="logo-container">
             <NavLink to="/">
-              <img src="../public/assets/Logo.png" alt="Logo" className="navbar-logo" />
+              <img src="/assets/Logo.png" alt="Logo" className="navbar-logo" loading="lazy" />
             </NavLink>
           </div>
           <ul className="nav-menu">
@@ -42,7 +66,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashbord" className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Crop Management
               </NavLink>
             </li>
@@ -62,7 +86,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <div className="sidebar-toggle" onClick={toggleSidebar}>
+          <div className="sidebar-toggle" onClick={toggleSidebar} aria-label="Toggle Sidebar">
             &#x2022;&#x2022;&#x2022; {/* Three dots icon */}
           </div>
         </nav>
@@ -74,17 +98,32 @@ export const Navbar = () => {
           <div className="sidebar-content">
             <ul>
               <li>
-                <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/account"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={closeSidebar}
+                >
                   Account
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/support" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={closeSidebar}
+                >
                   Support
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/logout" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/logout"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={() => {
+                    handleLogout();  // Logout the user when clicked
+                    closeSidebar();  // Close the sidebar
+                  }}
+                >
                   Logout
                 </NavLink>
               </li>

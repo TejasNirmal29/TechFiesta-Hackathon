@@ -1,5 +1,6 @@
 // Card.jsx
 import React from 'react';
+import '../styles/Card.css'
 
 const Card = ({ formData,onClick }) => {
   return (

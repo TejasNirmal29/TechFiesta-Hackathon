@@ -205,4 +205,46 @@
   .auto-coordinates-btn:hover {
     background-color: #0b7dda;  /* Darker blue on hover */
   }
-  
+  /* Backdrop Effect (Blur the background when the form is open) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  z-index: 10;
+  backdrop-filter: blur(5px); /* Apply background blur */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  opacity: 0; /* Initially hidden */
+}
+
+/* Form Modal Styling */
+.form-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1); /* Center the form and prevent scaling */
+  background-color: white;
+  padding: 40px; /* Increase padding for more space inside */
+  border-radius: 10px;
+  z-index: 20; /* Ensure the form is above the backdrop */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  width: 800px; /* Increased width for a larger form */
+  max-width: 90%; /* Make it responsive for smaller screens */
+  max-height: 80vh; /* Limit the max height to prevent form overflow */
+  overflow-y: auto; /* Add scroll if content is too long */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Show Form Modal (Smooth Transition) */
+.form-modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1); /* No scaling effect on form size */
+}
+
+/* Backdrop Visibility */
+.backdrop.show {
+  opacity: 1; /* Show the backdrop */
+}

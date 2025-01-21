@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import '../styles/SoilAnalysisForm.css';
 
 function SoilAnalysisForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -93,19 +94,31 @@ function SoilAnalysisForm({ onSubmit }) {
       setLoadingLocation(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
+          const { latitude, longitude, accuracy } = position.coords;
+
+          // Display a message if accuracy is low
+          if (accuracy > 50) { // Optional: Handle low accuracy
+            setLocationError("Accuracy is low, using available coordinates...");
+          } else {
+            setLocationError("");
+          }
+
           setPosition([latitude, longitude]);
           setFormData({
             ...formData,
             latitude,
             longitude,
           });
-          setLocationError("");
+
           setLoadingLocation(false);
         },
         (error) => {
           setLocationError("Error getting location. Please try again.");
           setLoadingLocation(false);
+        },
+        {
+          enableHighAccuracy: true,  // Request more accurate location data
+          maximumAge: 0,             // Do not use cached location
         }
       );
     } else {

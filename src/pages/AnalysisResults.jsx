@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom'; // To get the state passed during navigation
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import '../styles/AnalysisResults.css';
+import '../styles/AnalysisResults.css'
 
 // Register necessary components of Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
@@ -45,7 +45,7 @@ const AnalysisResults = () => {
     };
 
     return (
-        <div className="container">
+       <div className='container'>
             <div className="result-card">
                 <h2>Analysis Results</h2>
 
@@ -138,7 +138,7 @@ const AnalysisResults = () => {
             <div className="note">
                 <p><em>Note: This information is based on AI-generated insights. Always consult with agricultural experts for specific recommendations.</em></p>
             </div>
-        </div>
+            </div>
     );
 };
 

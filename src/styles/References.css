@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.referencepage  {
+    background: url('./assets/background.avif') no-repeat center center/cover;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+main {
+    flex-grow: 1;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.referencepage h1 {
+    text-align: center;
+    color: #22b13a;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reference-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.reference-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reference-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reference-card h2 {
+    color: #22b13a;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.reference-card p {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.reference-card a {
+    display: inline-block;
+    background-color: #22b13a;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.reference-card a:hover {
+    background-color: #1a8f2e;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #7fce50; /* Earthy green color */
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .logo-container {
+        margin-bottom: 15px;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    .reference-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reference-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

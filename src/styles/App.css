@@ -65,7 +65,12 @@ nav {
 .active {
     color: #66ff66;
 }
-
+.homepage {
+    min-height: calc(100vh - 100px);
+    /* Adjust 100px based on your header/footer height */
+    display: flex;
+    flex-direction: column;
+}
 .nav-menu li a::before,
 .nav-menu li a::after {
     content: "";
@@ -122,7 +127,7 @@ main {
 
 main.homepage {
     position: relative;
-    background: url('../public/assets/background.avif') no-repeat center center/cover; 
+    background: url('/assets/background.avif') no-repeat center center/cover; 
     height: calc(100vh - 50px); /* Adjust this value based on your navbar height */
     display: flex;
     align-items: center;
@@ -130,6 +135,8 @@ main.homepage {
     color: #fff;
     text-align: center;
 }
+
+
 
 .container {
     min-height: 100%;

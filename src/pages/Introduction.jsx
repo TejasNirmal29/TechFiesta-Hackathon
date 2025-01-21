@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-
+import '../styles/App.css'
 
 const Introduction = () => {
   
@@ -19,7 +19,7 @@ const Introduction = () => {
   }, []);
 
   return (
-    <div className="container">
+   <>
       <div className="moving-note">
         <marquee>
           <span style={{ color: "#ff6347" }}>⚠️ Development Notice:</span> This Website Is Under Development.
@@ -234,7 +234,7 @@ const Introduction = () => {
         </section>
 
       </div>
-    </div>
+      </>
   );
 };
 
