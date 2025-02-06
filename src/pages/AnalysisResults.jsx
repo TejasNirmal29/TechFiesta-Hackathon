@@ -11,7 +11,7 @@ const AnalysisResults = () => {
     const location = useLocation();
     const { formData } = location.state || {}; // Ensure we have formData from state
   
-    console.log("Received formData:", formData); // Log the received formData
+  // Log the received formData
   
     if (!formData) {
         return <div>No analysis data found</div>;
@@ -79,13 +79,7 @@ const AnalysisResults = () => {
                 <div className="result-section">
                     <h3>Soil Moisture Analysis</h3>
                     <ul>
-                        {/* Display additional result data */}
-                        {Object.entries(formData).map(([key, value]) => {
-                            if (!['cropName', 'cropAge', 'soilType', 'latitude', 'longitude', 'disease_predictions', 'additional_info'].includes(key)) {
-                                return <li key={key}><strong>{key}:</strong> {value}</li>;
-                            }
-                            return null;
-                        })}
+                       
                     </ul>
                 </div>
 

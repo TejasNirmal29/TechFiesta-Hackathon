@@ -6,7 +6,7 @@
 }
 
 .referencepage  {
-    background: url('./assets/background.avif') no-repeat center center/cover;
+    background: url('./assets/background4.jpg') no-repeat center center/cover;
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
@@ -45,7 +45,7 @@ main {
 }
 
 .reference-card {
-    background-color: #ffffff;
+    background-color: #ffffff45;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -54,6 +54,7 @@ main {
 }
 
 .reference-card:hover {
+    background-color: #ffffffd6;
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

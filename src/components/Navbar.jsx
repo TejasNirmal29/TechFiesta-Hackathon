@@ -66,10 +66,16 @@ export const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to="/Cropmanagement" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Crop Management
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>
+              Dashboard
+              </NavLink>
+            </li>
+
             <li>
               <NavLink to="/information" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Information
